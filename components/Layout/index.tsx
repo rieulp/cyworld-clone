@@ -3,19 +3,38 @@ import styled from "@emotion/styled";
 import SideBar from "./SideBar";
 import Header from "./Header";
 import { ContentBox } from "./styles";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface Props {
   children: React.ReactNode;
 }
 function Layout({ children }: Props) {
+  const { pathname } = useRouter();
   return (
     <Container>
       <InnerBox>
-        <Header />
-        <SideBar />
-        <main>
-          <ContentBox>{children}</ContentBox>
-        </main>
+        <div>
+          <Header />
+          <SideBar />
+          <main>
+            <ContentBox>{children}</ContentBox>
+          </main>
+          <NavBar>
+            <Link href="/" className={"/" === pathname ? "active" : ""}>
+              홈
+            </Link>
+            <Link href="/game" className={"/game" === pathname ? "active" : ""}>
+              게임
+            </Link>
+            <Link
+              href="/diary"
+              className={"/diary" === pathname ? "active" : ""}
+            >
+              다이어리
+            </Link>
+          </NavBar>
+        </div>
       </InnerBox>
     </Container>
   );
@@ -55,8 +74,37 @@ const InnerBox = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   padding: 3.8%;
-  display: grid;
-  grid-template-rows: 40px 1fr;
-  column-gap: 3px;
-  grid-template-columns: minmax(208px, 27%) 1fr;
+
+  & > div {
+    position: relative;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 40px 1fr;
+    column-gap: 3px;
+    grid-template-columns: minmax(208px, 27%) 1fr;
+  }
+`;
+
+const NavBar = styled.nav`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 60px;
+  right: -64px;
+  gap: 2px;
+  a {
+    display: block;
+    width: 65px;
+    background-color: #298eb5;
+    color: white;
+    text-align: center;
+    line-height: 32px;
+    font-size: 13px;
+    border: 1px solid ${({ theme }) => theme.colors.darkBlue};
+    border-radius: 0px 5px 5px 0px;
+    &.active {
+      background-color: white;
+      color: black;
+    }
+  }
 `;
