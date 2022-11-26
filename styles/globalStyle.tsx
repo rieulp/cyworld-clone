@@ -49,10 +49,20 @@ table {
 export const globalStyle = (
   <Global
     styles={css`
+      @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap");
+      @font-face {
+        font-family: "DungGeunMo";
+        src: url("/fonts/neodgm.woff"), url("/fonts/neodgm.woff");
+      }
       ${resetStyle}
       * {
         box-sizing: border-box;
       }
+      html,
+      body {
+        font-family: "Nanum Gothic", -apple-system, sans-serif;
+      }
+
       a {
         color: inherit;
         text-decoration: none;

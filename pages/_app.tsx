@@ -3,11 +3,11 @@ import { globalStyle } from "../styles/globalStyle";
 import Head from "next/head";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "../styles/theme";
+import Layout from "../components/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      {globalStyle}
       <Head>
         <title>cyworld</title>
         <meta
@@ -17,7 +17,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        {globalStyle}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </>
   );
