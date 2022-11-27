@@ -43,7 +43,7 @@ function Layout({ children }: Props) {
 export default Layout;
 
 const Container = styled.div`
-  background-image: url("/images/background.svg");
+  background-image: url(/images/background.svg);
   background-position: center center;
   background-repeat: repeat;
   background-size: auto;
@@ -69,7 +69,7 @@ const InnerBox = styled.div`
   height: 60vw;
   min-width: 808px;
   min-height: 544px;
-  background-image: url("/images/inner-box.svg");
+  background-image: url(/images/inner-box.svg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
