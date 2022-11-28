@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { ContentBox } from "./styles";
+import { ContentBox } from "../styles";
 
 function SideBar() {
   return (
@@ -63,7 +61,6 @@ function SideBar() {
 export default SideBar;
 
 const Container = styled.aside`
-  /* padding: 0 2px 10px 6px; */
   .profile-container {
     width: 100%;
     height: 100%;
@@ -75,10 +72,8 @@ const Container = styled.aside`
     position: relative;
     width: calc(100% - 4px);
     height: 28%;
-    /* margin: 0 auto; */
     border-radius: 3px;
     overflow: hidden;
-    /* padding: 0 2px; */
     align-self: center;
   }
   hr {

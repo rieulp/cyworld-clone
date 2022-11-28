@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import SideBar from "./SideBar";
 import Header from "./Header";
-import { ContentBox } from "./styles";
+import { ContentBox } from "../styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -48,40 +48,44 @@ const Container = styled.div`
   background-repeat: repeat;
   background-size: auto;
   height: 100vh;
+  min-width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 22px 17px 34px;
-
-  .grid-column {
-    display: grid;
-    grid-template-columns: minmax(208px, 27%) 1fr;
-  }
-
-  .content-container {
-    display: grid;
-    grid-template-columns: minmax(208px, 27%) 1fr;
-  }
+  overflow: scroll;
 `;
 
 const InnerBox = styled.div`
-  width: 89vw;
-  height: 60vw;
   min-width: 808px;
   min-height: 544px;
-  background-image: url(/images/inner-box.svg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding: 3.8%;
+  padding: 26px;
+  background: ${({ theme }) => theme.colors.primary};
+  border: 1px solid black;
+  border-radius: 10px;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    border: 2px dashed white;
+    border-radius: 10px;
+  }
 
   & > div {
+    background: #eee;
     position: relative;
     height: 100%;
     display: grid;
     grid-template-rows: 40px 1fr;
     column-gap: 3px;
     grid-template-columns: minmax(208px, 27%) 1fr;
+    border-radius: 10px;
+    padding: 10px;
   }
 `;
 

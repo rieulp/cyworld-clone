@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
 import { Music, playlist } from "../mock/playlist";
+import { ItemTitle } from "./styles";
 
-function Playlist() {
+function BgmList() {
   const [checkList, setCheckList] = useState(
     Array.from({ length: playlist.length }, () => false)
   );
@@ -28,34 +29,39 @@ function Playlist() {
   );
 
   return (
-    <TableContainer>
-      <thead>
-        <tr>
-          <th>
-            <input
-              type="checkbox"
+    <div>
+      <ItemTitle>
+        추억의 BGM <span>today choice</span>
+      </ItemTitle>
+      <TableContainer>
+        <thead>
+          <tr>
+            <th>
+              <input
+                type="checkbox"
+                onChange={onChangeCheck}
+                checked={allChecked}
+                value="all"
+              />
+            </th>
+            <th>번호</th>
+            <th className="left">곡명</th>
+            <th className="left">아티스트</th>
+          </tr>
+        </thead>
+        <tbody>
+          {playlist.map((music, index) => (
+            <PlaylistItem
+              key={index}
+              index={index}
+              checked={checkList[index]}
               onChange={onChangeCheck}
-              checked={allChecked}
-              value="all"
+              {...music}
             />
-          </th>
-          <th>번호</th>
-          <th className="left">곡명</th>
-          <th className="left">아티스트</th>
-        </tr>
-      </thead>
-      <tbody>
-        {playlist.map((music, index) => (
-          <PlaylistItem
-            key={index}
-            index={index}
-            checked={checkList[index]}
-            onChange={onChangeCheck}
-            {...music}
-          />
-        ))}
-      </tbody>
-    </TableContainer>
+          ))}
+        </tbody>
+      </TableContainer>
+    </div>
   );
 }
 
@@ -88,7 +94,7 @@ export function PlaylistItem({
   );
 }
 
-export default Playlist;
+export default BgmList;
 
 const TableContainer = styled.table`
   width: 100%;
@@ -107,8 +113,10 @@ const TableContainer = styled.table`
   }
   thead {
     background: #eee;
-    border-top: 1px solid ${({ theme }) => theme.colors.grey_60};
-    border-bottom: 1px solid ${({ theme }) => theme.colors.grey_60};
+    border-top: 1px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: ${({ theme }) => theme.colors.grey_60};
   }
   th {
     color: ${({ theme }) => theme.colors.grey_60};
