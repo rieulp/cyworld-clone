@@ -28,6 +28,17 @@ function BgmList() {
     [checkList]
   );
 
+  const onClickItem = (
+    e: React.MouseEvent<HTMLTableSectionElement, MouseEvent>
+  ) => {
+    if (e.target instanceof HTMLInputElement) return;
+    if (e.target instanceof HTMLElement) {
+      const inputElem = e.target.closest("tr")?.querySelector("input");
+      if (!inputElem) return;
+      inputElem.click();
+    }
+  };
+
   return (
     <div>
       <ItemTitle>
@@ -49,7 +60,7 @@ function BgmList() {
             <th className="left">아티스트</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody onClick={onClickItem}>
           {playlist.map((music, index) => (
             <PlaylistItem
               key={index}
@@ -99,8 +110,8 @@ export default BgmList;
 const TableContainer = styled.table`
   width: 100%;
   text-align: center;
-  font-size: 13px;
-  line-height: 23px;
+  font-size: 11px;
+  line-height: 18px;
   .left {
     text-align: left;
   }
@@ -125,6 +136,9 @@ const TableContainer = styled.table`
   tbody {
     tr {
       border-bottom: 1px dotted ${({ theme }) => theme.colors.grey_60};
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 `;
