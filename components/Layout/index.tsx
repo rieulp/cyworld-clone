@@ -53,7 +53,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 22px 17px 34px;
-  overflow: scroll;
 `;
 
 const InnerBox = styled.div`

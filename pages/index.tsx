@@ -4,6 +4,7 @@ import { BoardSummary, FetchBoardsData, FETCH_BOARDS } from "../api/useBoards";
 import BgmList from "../components/BgmList";
 import { ItemContainer } from "../components/styles";
 import UpdateNews from "../components/UpdateNews";
+import { isNewDate } from "../utils/day";
 
 export default function Home({
   boards,
@@ -12,7 +13,7 @@ export default function Home({
   return (
     <div>
       <ItemContainer>
-        <UpdateNews data={boards} counts={{ diary: boardsCount }} />
+        <UpdateNews data={boards} counts={{ boardsCount }} />
       </ItemContainer>
       <ItemContainer>
         <BgmList />
@@ -23,17 +24,20 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps<{
   boards?: BoardSummary[];
-  boardsCount: number;
+  boardsCount: [number, number];
 }> = async () => {
   const { data } = await initializeClient().query<FetchBoardsData>({
     query: FETCH_BOARDS,
-    variables: { page: 0 },
+    variables: { page: 1 },
   });
+  const boardsNewCount =
+    data.fetchBoards.filter(({ createdAt }) => isNewDate(createdAt))?.length ||
+    0;
 
   return {
     props: {
       boards: data.fetchBoards?.slice(0, 4),
-      boardsCount: data.fetchBoardsCount,
+      boardsCount: [boardsNewCount, data.fetchBoardsCount],
     },
   };
 };

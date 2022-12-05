@@ -2,11 +2,12 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 import { BoardSummary } from "../api/useBoards";
 import { ItemTitle } from "./styles";
+import { isNewDate } from "../utils/day";
 
 interface Props {
   data?: BoardSummary[];
   counts?: {
-    diary?: number;
+    boardsCount?: [number, number];
   };
 }
 function UpdateNews({ data, counts }: Props) {
@@ -15,21 +16,24 @@ function UpdateNews({ data, counts }: Props) {
       <ItemTitle>Updated news</ItemTitle>
       <div className="row">
         <ul className="updateList">
-          {data?.map(({ number, title }) => (
-            <li key={number}>
-              <Link href={`/diary/${number}`}>
-                <span className="tag diary">다이어리</span>
-                {title}
-              </Link>
-            </li>
-          ))}
+          {data?.map(({ number, title, createdAt }) => {
+            const isNew = isNewDate(createdAt) ? "new" : "";
+            return (
+              <li key={number} className={isNew}>
+                <Link href={`/diary/${number}`}>
+                  <span className="tag diary">다이어리</span>
+                  {title}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <table className="countsTable">
           <tbody>
             <tr>
               <th>다이어리</th>
               <td>
-                <Link href="/diary">0/{counts?.diary}</Link>
+                <Link href="/diary">{counts?.boardsCount?.join("/")}</Link>
               </td>
               <th>사진첩</th>
               <td>0/265</td>
@@ -51,6 +55,18 @@ function UpdateNews({ data, counts }: Props) {
 export default UpdateNews;
 
 const Container = styled.div`
+  .new::after {
+    content: "N";
+    display: inline-block;
+    font-size: 8px;
+    color: white;
+    border-radius: 2px;
+    background: #ff8822;
+    width: 8px;
+    padding: 1px;
+    text-align: center;
+    margin-left: 5px;
+  }
   .tag {
     display: inline-block;
     border-radius: 1px;
@@ -74,7 +90,7 @@ const Container = styled.div`
 
   .row {
     display: flex;
-    gap: 17px;
+    gap: 11px;
     align-items: flex-start;
   }
   .countsTable {
