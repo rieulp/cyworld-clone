@@ -20,6 +20,8 @@ function WordChain() {
       setResult("2단어 이상 입력해주세요");
     } else if (word[word.length - 1] === answer?.[0]) {
       setResult("정답입니다!");
+      setWord(answer);
+      setAnswer("");
     } else {
       setResult("틀렸습니다!");
     }
@@ -35,7 +37,7 @@ function WordChain() {
       color={colors.light_grey}
       css={css`
         max-width: 65%;
-        margin: 10px auto;
+        margin: 8px auto;
       `}
     >
       <GameBox>

@@ -27,7 +27,7 @@ function Lotto() {
       color={colors.light_grey}
       css={css`
         max-width: 65%;
-        margin: 10px auto;
+        margin: 8px auto;
       `}
     >
       <GameBox>

@@ -38,7 +38,7 @@ export const GameBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
 
   .title {
     font-weight: 700;
@@ -47,6 +47,7 @@ export const GameBox = styled.div`
   .sub-title {
     font-size: 10px;
     color: ${({ theme }) => theme.colors.grey_60};
+    min-height: 10px;
   }
   .number-box {
     padding: 2px;
