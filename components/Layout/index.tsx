@@ -56,8 +56,8 @@ const Container = styled.div`
 `;
 
 const InnerBox = styled.div`
-  min-width: 808px;
-  min-height: 544px;
+  width: 810px;
+  height: 566px;
   padding: 26px;
   background: ${({ theme }) => theme.colors.primary};
   border: 1px solid black;

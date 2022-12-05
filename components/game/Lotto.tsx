@@ -23,25 +23,17 @@ function Lotto() {
   }, []);
 
   return (
-    <ContentBox
-      color={colors.light_grey}
-      css={css`
-        max-width: 65%;
-        margin: 8px auto;
-      `}
-    >
-      <GameBox>
-        <Image src="/images/lotto.svg" alt="lotto" width={30} height={30} />
-        <h3 className="title">LOTTO</h3>
-        <p className="sub-title">버튼을 누르세요.</p>
-        <div className="number-box">
-          {numbers.map((num, i) => (
-            <span key={i}>{num}</span>
-          ))}
-        </div>
-        <Button onClick={() => setNumbers(createNumbers())}>Button</Button>
-      </GameBox>
-    </ContentBox>
+    <GameBox>
+      <Image src="/images/lotto.svg" alt="lotto" width={30} height={30} />
+      <h3 className="title">LOTTO</h3>
+      <p className="sub-title">버튼을 누르세요.</p>
+      <div className="number-box">
+        {numbers.map((num, i) => (
+          <span key={i}>{num}</span>
+        ))}
+      </div>
+      <Button onClick={() => setNumbers(createNumbers())}>Button</Button>
+    </GameBox>
   );
 }
 

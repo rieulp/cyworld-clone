@@ -90,7 +90,7 @@ const Container = styled.div`
 
   .row {
     display: flex;
-    gap: 11px;
+    gap: 17px;
     align-items: flex-start;
   }
   .countsTable {

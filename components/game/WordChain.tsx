@@ -33,29 +33,21 @@ function WordChain() {
   }, []);
 
   return (
-    <ContentBox
-      color={colors.light_grey}
-      css={css`
-        max-width: 65%;
-        margin: 8px auto;
-      `}
-    >
-      <GameBox>
-        <Image src="/images/game.svg" alt="train" width={40} height={20} />
-        <h3 className="title">끝말잇기</h3>
-        <p className="sub-title">제시어: {word}</p>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            placeholder="단어를 입력하세요"
-            value={answer}
-            onChange={onChangeAnswer}
-          />{" "}
-          <Button type="submit">검색</Button>
-        </form>
-        <p className="sub-title">{result}</p>
-      </GameBox>
-    </ContentBox>
+    <GameBox>
+      <Image src="/images/game.svg" alt="train" width={40} height={20} />
+      <h3 className="title">끝말잇기</h3>
+      <p className="sub-title">제시어: {word}</p>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          placeholder="단어를 입력하세요"
+          value={answer}
+          onChange={onChangeAnswer}
+        />{" "}
+        <Button type="submit">검색</Button>
+      </form>
+      <p className="sub-title">{result}</p>
+    </GameBox>
   );
 }
 

@@ -8,6 +8,7 @@ export const ContentBox = styled.div<{ color?: string }>`
 `;
 
 export const ItemTitle = styled.h2`
+  position: relative;
   font-weight: 700;
   font-size: 18px;
   color: ${({ theme }) => theme.colors.primary};
@@ -23,9 +24,12 @@ export const ItemTitle = styled.h2`
 `;
 
 export const ItemContainer = styled.div`
-  margin: 30px;
+  margin: 28px;
 `;
 
+export const ContentContainer = styled.div`
+  height: 359px;
+`;
 export const Button = styled.button`
   background: white;
   border: 1px solid black;
@@ -33,13 +37,16 @@ export const Button = styled.button`
   color: ${({ theme }) => theme.colors.grey_40};
 `;
 
-export const GameBox = styled.div`
-  padding: 30px;
+export const GameBox = styled(ContentBox)`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 7px;
-
+  background: ${({ theme }) => theme.colors.light_grey};
+  width: 300px;
+  height: 50%;
+  margin: 8px auto;
+  justify-content: center;
   .title {
     font-weight: 700;
     font-size: 12px;

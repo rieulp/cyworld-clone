@@ -1,6 +1,10 @@
 import Lotto from "../components/game/Lotto";
 import WordChain from "../components/game/WordChain";
-import { ItemContainer, ItemTitle } from "../components/styles";
+import {
+  ContentContainer,
+  ItemContainer,
+  ItemTitle,
+} from "../components/styles";
 
 function GamePage() {
   return (
@@ -9,10 +13,10 @@ function GamePage() {
         Game<span>today game</span>
       </ItemTitle>
       <hr />
-      <div>
+      <ContentContainer>
         <WordChain />
         <Lotto />
-      </div>
+      </ContentContainer>
     </ItemContainer>
   );
 }
