@@ -8,7 +8,13 @@ function SideBar() {
       <ContentBox>
         <div className="profile-container">
           <div className="image-wrapper">
-            <Image src="/images/profile.jpg" fill alt="profile" />
+            <Image
+              src="/images/profile.gif"
+              width={100}
+              height={100}
+              alt="profile"
+              style={{ width: "100%", height: "auto" }}
+            />
           </div>
           <hr />
           <ul className="info-list">
